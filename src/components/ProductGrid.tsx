@@ -5,7 +5,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   price: number;
   image: string;
@@ -34,7 +34,7 @@ const ProductGrid = () => {
       // Fallback to static products if database fetch fails
       setProducts([
         {
-          id: 1,
+          id: "1",
           name: "Vassoura Premium",
           price: 29.90,
           image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=400&h=400&fit=crop",
@@ -42,7 +42,7 @@ const ProductGrid = () => {
           category: "Vassouras"
         },
         {
-          id: 2,
+          id: "2",
           name: "Esfregona Super Absorvente",
           price: 34.90,
           image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&h=400&fit=crop",
@@ -50,7 +50,7 @@ const ProductGrid = () => {
           category: "Esfregonas"
         },
         {
-          id: 3,
+          id: "3",
           name: "Kit Limpeza Completo",
           price: 89.90,
           image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
@@ -58,7 +58,7 @@ const ProductGrid = () => {
           category: "Kits"
         },
         {
-          id: 4,
+          id: "4",
           name: "Vassoura Mágica 360°",
           price: 45.90,
           image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=400&h=400&fit=crop",
@@ -66,7 +66,7 @@ const ProductGrid = () => {
           category: "Vassouras"
         },
         {
-          id: 5,
+          id: "5",
           name: "Esfregona Microfibra",
           price: 39.90,
           image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&h=400&fit=crop",
@@ -74,7 +74,7 @@ const ProductGrid = () => {
           category: "Esfregonas"
         },
         {
-          id: 6,
+          id: "6",
           name: "Panos Multiuso (Pack 5)",
           price: 19.90,
           image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
