@@ -38,7 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
         <div className="flex items-center justify-between">
           <span className="text-2xl font-bold text-primary">
-            R$ {product.price.toFixed(2)}
+            {product.price.toFixed(2)} AKZ
           </span>
           <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
             {product.category}

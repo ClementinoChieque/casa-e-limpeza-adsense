@@ -45,7 +45,7 @@ const Contact = () => {
                   <label htmlFor="phone" className="text-sm font-medium text-gray-700">
                     Telefone (opcional)
                   </label>
-                  <Input id="phone" placeholder="(11) 12345-6789" />
+                  <Input id="phone" placeholder="+244 123 456 789" />
                 </div>
                 
                 <div className="space-y-2">
@@ -83,7 +83,7 @@ const Contact = () => {
                     <span className="text-primary text-xl">📧</span>
                     <div>
                       <p className="font-medium text-gray-800">E-mail</p>
-                      <p className="text-gray-600">contato@minhacasa.com.br</p>
+                      <p className="text-gray-600">minhacasa@gmail.com</p>
                     </div>
                   </div>
                   
@@ -91,7 +91,7 @@ const Contact = () => {
                     <span className="text-primary text-xl">📞</span>
                     <div>
                       <p className="font-medium text-gray-800">Telefone</p>
-                      <p className="text-gray-600">(11) 1234-5678</p>
+                      <p className="text-gray-600">+244 927 156 153</p>
                     </div>
                   </div>
                   
@@ -99,7 +99,7 @@ const Contact = () => {
                     <span className="text-primary text-xl">💬</span>
                     <div>
                       <p className="font-medium text-gray-800">WhatsApp</p>
-                      <p className="text-gray-600">(11) 91234-5678</p>
+                      <p className="text-gray-600">+244 927 156 153</p>
                     </div>
                   </div>
                   
@@ -124,8 +124,8 @@ const Contact = () => {
                     <div>
                       <p className="text-gray-600">
                         Rua das Flores, 123<br />
-                        Centro - São Paulo, SP<br />
-                        CEP: 01234-567
+                        Centro - Luanda, Angola<br />
+                        CEP: 12345
                       </p>
                     </div>
                   </div>
@@ -139,7 +139,7 @@ const Contact = () => {
                 <CardContent className="space-y-3">
                   <div className="text-sm">
                     <p className="font-medium text-gray-800 mb-1">Qual o prazo de entrega?</p>
-                    <p className="text-gray-600">De 3 a 7 dias úteis para todo o Brasil.</p>
+                    <p className="text-gray-600">De 3 a 7 dias úteis para toda Angola.</p>
                   </div>
                   
                   <div className="text-sm">
@@ -149,7 +149,7 @@ const Contact = () => {
                   
                   <div className="text-sm">
                     <p className="font-medium text-gray-800 mb-1">Como acompanhar meu pedido?</p>
-                    <p className="text-gray-600">Você receberá o código de rastreamento por e-mail.</p>
+                    <p className="text-gray-600">Você receberá informações via WhatsApp.</p>
                   </div>
                 </CardContent>
               </Card>

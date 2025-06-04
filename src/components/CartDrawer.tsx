@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { useCart } from '@/contexts/CartContext';
 import { Minus, Plus, Trash2 } from 'lucide-react';
+import { generateWhatsAppCheckoutUrl } from '@/utils/whatsappCheckout';
 
 interface CartDrawerProps {
   onClose: () => void;
@@ -11,6 +12,11 @@ interface CartDrawerProps {
 
 const CartDrawer: React.FC<CartDrawerProps> = ({ onClose }) => {
   const { items, updateQuantity, removeFromCart, getTotalPrice, clearCart } = useCart();
+
+  const handleWhatsAppCheckout = () => {
+    const whatsappUrl = generateWhatsAppCheckoutUrl(items, getTotalPrice());
+    window.open(whatsappUrl, '_blank');
+  };
 
   if (items.length === 0) {
     return (
@@ -33,7 +39,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onClose }) => {
             />
             <div className="flex-1">
               <h4 className="font-medium text-sm">{item.name}</h4>
-              <p className="text-primary font-semibold">R$ {item.price.toFixed(2)}</p>
+              <p className="text-primary font-semibold">{item.price.toFixed(2)} AKZ</p>
               <div className="flex items-center space-x-2 mt-2">
                 <Button
                   size="sm"
@@ -68,12 +74,15 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onClose }) => {
         <div className="flex justify-between items-center">
           <span className="text-lg font-semibold">Total:</span>
           <span className="text-lg font-bold text-primary">
-            R$ {getTotalPrice().toFixed(2)}
+            {getTotalPrice().toFixed(2)} AKZ
           </span>
         </div>
         <div className="space-y-2">
-          <Button className="w-full gradient-bg text-white hover:opacity-90">
-            Finalizar Compra
+          <Button 
+            className="w-full gradient-bg text-white hover:opacity-90"
+            onClick={handleWhatsAppCheckout}
+          >
+            Finalizar no WhatsApp
           </Button>
           <Button variant="outline" className="w-full" onClick={clearCart}>
             Limpar Carrinho
