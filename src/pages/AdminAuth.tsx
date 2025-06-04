@@ -9,11 +9,10 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const AdminAuth = () => {
-  const [phone, setPhone] = useState('');
-  const [otp, setOtp] = useState('');
-  const [step, setStep] = useState<'phone' | 'otp'>('phone');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signInWithPhone, verifyOtp, user } = useAuth();
+  const { signInWithEmail, user } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -23,39 +22,16 @@ const AdminAuth = () => {
     }
   }, [user, navigate]);
 
-  const handleSendOtp = async (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!phone.trim()) return;
+    if (!email.trim() || !password.trim()) return;
 
     setLoading(true);
-    const { error } = await signInWithPhone(phone);
+    const { error } = await signInWithEmail(email, password);
     
     if (error) {
       toast({
-        title: "Erro ao enviar SMS",
-        description: error.message,
-        variant: "destructive",
-      });
-    } else {
-      toast({
-        title: "SMS enviado!",
-        description: "Verifique seu telefone e digite o código recebido.",
-      });
-      setStep('otp');
-    }
-    setLoading(false);
-  };
-
-  const handleVerifyOtp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!otp.trim()) return;
-
-    setLoading(true);
-    const { error } = await verifyOtp(phone, otp);
-    
-    if (error) {
-      toast({
-        title: "Código inválido",
+        title: "Erro ao fazer login",
         description: error.message,
         variant: "destructive",
       });
@@ -75,59 +51,39 @@ const AdminAuth = () => {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">Painel Administrativo</CardTitle>
           <CardDescription>
-            {step === 'phone' 
-              ? 'Digite seu número de telefone para receber o código de acesso'
-              : 'Digite o código de 6 dígitos enviado para seu telefone'
-            }
+            Digite suas credenciais para acessar o painel
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {step === 'phone' ? (
-            <form onSubmit={handleSendOtp} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Número de Telefone
-                </label>
-                <Input
-                  type="tel"
-                  placeholder="+244 927 156 153"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Enviando...' : 'Enviar Código'}
-              </Button>
-            </form>
-          ) : (
-            <form onSubmit={handleVerifyOtp} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Código de Verificação
-                </label>
-                <Input
-                  type="text"
-                  placeholder="123456"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  maxLength={6}
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Verificando...' : 'Verificar Código'}
-              </Button>
-              <Button 
-                type="button" 
-                variant="outline" 
-                className="w-full"
-                onClick={() => setStep('phone')}
-              >
-                Voltar
-              </Button>
-            </form>
-          )}
+          <form onSubmit={handleSignIn} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Email
+              </label>
+              <Input
+                type="email"
+                placeholder="admin@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Senha
+              </label>
+              <Input
+                type="password"
+                placeholder="Digite sua senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'Fazendo login...' : 'Entrar'}
+            </Button>
+          </form>
         </CardContent>
       </Card>
     </div>
