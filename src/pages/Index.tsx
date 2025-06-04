@@ -1,12 +1,87 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import Header from '@/components/Header';
+import HeroSection from '@/components/HeroSection';
+import ProductGrid from '@/components/ProductGrid';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-white">
+      <Header />
+      
+      {/* AdSense - Topo da página */}
+      <div className="bg-gray-50 py-2 text-center">
+        <div className="container mx-auto px-4">
+          <div className="bg-gray-100 p-2 rounded border-2 border-dashed border-gray-300">
+            <p className="text-gray-500 text-xs">Google AdSense - Banner Superior 970x90</p>
+          </div>
+        </div>
       </div>
+      
+      <HeroSection />
+      
+      {/* AdSense - Meio da página */}
+      <div className="bg-white py-8">
+        <div className="container mx-auto px-4 text-center">
+          <div className="bg-gray-100 p-4 rounded-lg border-2 border-dashed border-gray-300 max-w-md mx-auto">
+            <p className="text-gray-500 text-sm">Google AdSense - Banner Quadrado 300x250</p>
+          </div>
+        </div>
+      </div>
+      
+      <ProductGrid />
+      
+      {/* Seção de Benefícios */}
+      <section className="py-16 px-4 clean-gradient">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">
+            Por que escolher a Minha Casa?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center bg-white p-8 rounded-lg shadow-sm hover-scale">
+              <div className="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-white text-3xl">🚚</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Frete Grátis</h3>
+              <p className="text-gray-600">
+                Frete grátis para compras acima de R$ 99,00 em todo o Brasil
+              </p>
+            </div>
+            
+            <div className="text-center bg-white p-8 rounded-lg shadow-sm hover-scale">
+              <div className="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-white text-3xl">🔒</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Compra Segura</h3>
+              <p className="text-gray-600">
+                Pagamento 100% seguro com as principais bandeiras de cartão
+              </p>
+            </div>
+            
+            <div className="text-center bg-white p-8 rounded-lg shadow-sm hover-scale">
+              <div className="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-white text-3xl">🏆</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Qualidade Garantida</h3>
+              <p className="text-gray-600">
+                Produtos selecionados com garantia de qualidade e durabilidade
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* AdSense - Final da página */}
+      <div className="bg-gray-50 py-8">
+        <div className="container mx-auto px-4 text-center">
+          <div className="bg-gray-100 p-4 rounded-lg border-2 border-dashed border-gray-300">
+            <p className="text-gray-500 text-sm">Google AdSense - Banner Inferior 728x90</p>
+          </div>
+        </div>
+      </div>
+      
+      <Footer />
     </div>
   );
 };
