@@ -31,6 +31,11 @@ const ProductGrid = () => {
 
     if (error) {
       console.error('Error fetching products:', error);
+      toast({
+        title: "Erro ao carregar produtos",
+        description: "Não foi possível carregar os produtos. Usando produtos de exemplo.",
+        variant: "destructive",
+      });
       // Fallback to static products if database fetch fails
       setProducts([
         {
@@ -70,7 +75,7 @@ const ProductGrid = () => {
           name: "Esfregona Microfibra",
           price: 39.90,
           image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&h=400&fit=crop",
-          description: "Esfregona de microfibra que remove 99% das bactérias sem produtos químicos.",
+          description: "Esfregona de microfibra que remove 99%% das bactérias sem produtos químicos.",
           category: "Esfregonas"
         },
         {
@@ -83,6 +88,7 @@ const ProductGrid = () => {
         }
       ]);
     } else {
+      console.log('Products fetched successfully:', data);
       // Transform database products to match the expected format
       const transformedProducts = data.map(dbProduct => ({
         id: dbProduct.id,
@@ -123,11 +129,17 @@ const ProductGrid = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product, index) => (
-              <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <ProductCard product={product} />
+            {products.length > 0 ? (
+              products.map((product, index) => (
+                <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <ProductCard product={product} />
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-8">
+                <p className="text-gray-500">Nenhum produto encontrado.</p>
               </div>
-            ))}
+            )}
           </div>
         )}
         
