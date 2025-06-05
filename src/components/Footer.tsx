@@ -9,9 +9,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">MC</span>
-              </div>
+              <img 
+                src="/lovable-uploads/267df6d9-d0ec-44e6-9b66-94a8529cefff.png" 
+                alt="Minha Casa Logo" 
+                className="w-8 h-8 object-contain"
+              />
               <h3 className="text-xl font-bold">Minha Casa</h3>
             </div>
             <p className="text-gray-400 mb-4">
