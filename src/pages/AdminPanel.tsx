@@ -126,31 +126,43 @@ const AdminPanel = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
-      <div className="container mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Painel Administrativo</h1>
-          <div className="flex gap-2">
-            <Button onClick={openAddDialog} className="flex items-center gap-2">
+    <div className="min-h-screen bg-gray-50 p-2 sm:p-4">
+      <div className="container mx-auto max-w-7xl">
+        {/* Header otimizado para mobile */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4">
+          <h1 className="text-2xl sm:text-3xl font-bold">Painel Admin</h1>
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button 
+              onClick={openAddDialog} 
+              className="flex items-center gap-2 text-sm sm:text-base"
+              size="sm"
+            >
               <Plus className="h-4 w-4" />
-              Adicionar Produto
+              <span className="hidden sm:inline">Adicionar Produto</span>
+              <span className="sm:hidden">Adicionar</span>
             </Button>
-            <Button variant="outline" onClick={handleSignOut} className="flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              onClick={handleSignOut} 
+              className="flex items-center gap-2 text-sm sm:text-base"
+              size="sm"
+            >
               <LogOut className="h-4 w-4" />
               Sair
             </Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Grid responsivo otimizado para mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {loadingProducts ? (
             <div className="col-span-full text-center py-8">
               <div className="text-lg">Carregando produtos...</div>
             </div>
           ) : products.length === 0 ? (
             <div className="col-span-full text-center py-8">
-              <div className="text-lg text-gray-500">Nenhum produto encontrado</div>
-              <Button onClick={openAddDialog} className="mt-4">
+              <div className="text-lg text-gray-500 mb-4">Nenhum produto encontrado</div>
+              <Button onClick={openAddDialog} size="sm">
                 Adicionar seu primeiro produto
               </Button>
             </div>
@@ -168,14 +180,15 @@ const AdminPanel = () => {
                     </div>
                   )}
                 </CardHeader>
-                <CardContent className="p-4">
+                <CardContent className="p-3 sm:p-4">
                   <div className="flex justify-between items-start mb-2">
-                    <CardTitle className="text-lg">{product.name}</CardTitle>
-                    <div className="flex gap-1">
+                    <CardTitle className="text-base sm:text-lg line-clamp-2">{product.name}</CardTitle>
+                    <div className="flex gap-1 ml-2 flex-shrink-0">
                       <Button 
                         size="sm" 
                         variant="outline"
                         onClick={() => openEditDialog(product)}
+                        className="h-8 w-8 p-0"
                       >
                         <Edit className="h-3 w-3" />
                       </Button>
@@ -183,16 +196,17 @@ const AdminPanel = () => {
                         size="sm" 
                         variant="destructive"
                         onClick={() => handleDeleteProduct(product.id)}
+                        className="h-8 w-8 p-0"
                       >
                         <Trash2 className="h-3 w-3" />
                       </Button>
                     </div>
                   </div>
-                  <p className="text-gray-600 text-sm mb-2 line-clamp-2">
+                  <p className="text-gray-600 text-xs sm:text-sm mb-2 line-clamp-2">
                     {product.description}
                   </p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-xl font-bold text-primary">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <span className="text-lg sm:text-xl font-bold text-primary">
                       {product.price.toFixed(2)} AKZ
                     </span>
                     <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
@@ -203,9 +217,10 @@ const AdminPanel = () => {
                     <div className="mt-2">
                       <video 
                         src={product.video_url} 
-                        className="w-full h-20 object-cover rounded"
+                        className="w-full h-16 sm:h-20 object-cover rounded"
                         controls
                         muted
+                        preload="metadata"
                       />
                     </div>
                   )}
@@ -215,10 +230,11 @@ const AdminPanel = () => {
           )}
         </div>
 
+        {/* Dialog otimizado para mobile */}
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto m-2">
             <DialogHeader>
-              <DialogTitle>
+              <DialogTitle className="text-lg sm:text-xl">
                 {editingProduct ? 'Editar Produto' : 'Adicionar Produto'}
               </DialogTitle>
             </DialogHeader>

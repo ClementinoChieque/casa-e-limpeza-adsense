@@ -6,7 +6,7 @@ import { useCart, Product } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 
 interface ProductCardProps {
-  product: Product;
+  product: Product & { video_url?: string };
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
@@ -32,6 +32,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
+        {/* Exibir vídeo se existir */}
+        {product.video_url && (
+          <div className="p-4 pb-0">
+            <video 
+              src={product.video_url} 
+              className="w-full h-32 object-cover rounded-lg border"
+              controls
+              muted
+              preload="metadata"
+            />
+          </div>
+        )}
       </CardHeader>
       <CardContent className="p-4">
         <h3 className="font-semibold text-lg mb-2">{product.name}</h3>

@@ -10,16 +10,10 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <Header />
       
-      {/* AdSense - Topo da página */}
-      <div className="bg-gray-50 py-2 text-center">
-        <div className="container mx-auto px-4">
-          <div className="bg-gray-100 p-2 rounded border-2 border-dashed border-gray-300">
-            <p className="text-gray-500 text-xs">Google AdSense - Banner Superior 970x90</p>
-          </div>
-        </div>
-      </div>
-      
       <HeroSection />
+      
+      {/* Produtos movidos para cima - logo após o hero */}
+      <ProductGrid />
       
       {/* AdSense - Meio da página */}
       <div className="bg-white py-8">
@@ -29,8 +23,6 @@ const Index = () => {
           </div>
         </div>
       </div>
-      
-      <ProductGrid />
       
       {/* Seção de Benefícios */}
       <section className="py-16 px-4 clean-gradient">
