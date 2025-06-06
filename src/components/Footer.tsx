@@ -47,7 +47,6 @@ const Footer = () => {
               <li><Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">Política de Privacidade</Link></li>
               <li><Link to="/terms" className="text-gray-400 hover:text-white transition-colors">Termos de Uso</Link></li>
               <li><Link to="/cookies" className="text-gray-400 hover:text-white transition-colors">Política de Cookies</Link></li>
-              <li><Link to="/return-policy" className="text-gray-400 hover:text-white transition-colors">Política de Devolução</Link></li>
             </ul>
           </div>
         </div>
