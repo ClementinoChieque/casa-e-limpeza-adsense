@@ -1,7 +1,6 @@
 
 import React from 'react';
 import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
 import ProductGrid from '@/components/ProductGrid';
 import Footer from '@/components/Footer';
 
@@ -10,9 +9,20 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <Header />
       
-      <HeroSection />
+      {/* Hero Section Simplificado */}
+      <section className="clean-gradient py-12 px-4">
+        <div className="container mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-6 animate-fade-in">
+            Produtos de Limpeza
+            <span className="text-primary block">Para Sua Casa</span>
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto animate-fade-in">
+            Encontre vassouras, esfregonas e todos os produtos essenciais para manter sua casa sempre limpa e organizada.
+          </p>
+        </div>
+      </section>
       
-      {/* Produtos movidos para cima - logo após o hero */}
+      {/* Produtos movidos para cima - logo após o hero simplificado */}
       <ProductGrid />
       
       {/* AdSense - Meio da página */}
