@@ -11,6 +11,7 @@ interface Product {
   image: string;
   description: string;
   category: string;
+  video_url?: string;
 }
 
 const ProductGrid = () => {
@@ -96,7 +97,8 @@ const ProductGrid = () => {
         price: dbProduct.price,
         image: dbProduct.image_url || "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
         description: dbProduct.description || "",
-        category: dbProduct.category || "Produtos"
+        category: dbProduct.category || "Produtos",
+        video_url: dbProduct.video_url || undefined
       }));
       setProducts(transformedProducts);
     }
