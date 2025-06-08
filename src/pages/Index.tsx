@@ -29,7 +29,7 @@ const Index = () => {
           <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">
             Por que escolher a Minha Casa?
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="text-center bg-white p-8 rounded-lg shadow-sm hover-scale">
               <div className="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-white text-3xl">🚚</span>
@@ -37,16 +37,6 @@ const Index = () => {
               <h3 className="text-xl font-semibold text-gray-800 mb-4">Frete Grátis</h3>
               <p className="text-gray-600">
                 Frete grátis para compras acima de R$ 99,00 em todo o Brasil
-              </p>
-            </div>
-            
-            <div className="text-center bg-white p-8 rounded-lg shadow-sm hover-scale">
-              <div className="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-white text-3xl">🔒</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Compra Segura</h3>
-              <p className="text-gray-600">
-                Pagamento 100% seguro com as principais bandeiras de cartão
               </p>
             </div>
             
