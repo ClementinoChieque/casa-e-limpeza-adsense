@@ -6,7 +6,10 @@ import { useToast } from '@/hooks/use-toast';
 import AdminHeader from '@/components/admin/AdminHeader';
 import ProductGrid from '@/components/admin/ProductGrid';
 import ProductDialog from '@/components/admin/ProductDialog';
+import SEOManager from '@/components/admin/SEOManager';
 import { useProducts } from '@/hooks/useProducts';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Package, Search } from 'lucide-react';
 
 interface Product {
   id: string;
@@ -82,15 +85,34 @@ const AdminPanel = () => {
           onSignOut={handleSignOut}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          <ProductGrid
-            products={products}
-            loading={loadingProducts}
-            onEditProduct={openEditDialog}
-            onDeleteProduct={deleteProduct}
-            onAddProduct={openAddDialog}
-          />
-        </div>
+        <Tabs defaultValue="products" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-6">
+            <TabsTrigger value="products" className="flex items-center space-x-2">
+              <Package className="h-4 w-4" />
+              <span>Produtos</span>
+            </TabsTrigger>
+            <TabsTrigger value="seo" className="flex items-center space-x-2">
+              <Search className="h-4 w-4" />
+              <span>SEO</span>
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="products">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+              <ProductGrid
+                products={products}
+                loading={loadingProducts}
+                onEditProduct={openEditDialog}
+                onDeleteProduct={deleteProduct}
+                onAddProduct={openAddDialog}
+              />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="seo">
+            <SEOManager />
+          </TabsContent>
+        </Tabs>
 
         <ProductDialog
           open={dialogOpen}

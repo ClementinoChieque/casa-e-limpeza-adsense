@@ -1,13 +1,93 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const generateWhatsAppContactUrl = () => {
+    const phoneNumber = "+244927156153";
+    
+    let message = "📞 *Nova Mensagem de Contato - Minha Casa*\n\n";
+    message += `👤 *Nome:* ${formData.name}\n`;
+    message += `📧 *E-mail:* ${formData.email}\n`;
+    
+    if (formData.phone) {
+      message += `📱 *Telefone:* ${formData.phone}\n`;
+    }
+    
+    message += `📝 *Assunto:* ${formData.subject}\n\n`;
+    message += `💬 *Mensagem:*\n${formData.message}\n\n`;
+    message += `⏰ *Data/Hora:* ${new Date().toLocaleString('pt-BR')}`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    return `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodedMessage}`;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      toast({
+        title: "Campos obrigatórios",
+        description: "Por favor, preencha todos os campos obrigatórios.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const whatsappUrl = generateWhatsAppContactUrl();
+      window.open(whatsappUrl, '_blank');
+      
+      toast({
+        title: "Mensagem enviada!",
+        description: "Você será redirecionado para o WhatsApp para enviar sua mensagem.",
+      });
+      
+      // Limpar formulário
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Erro",
+        description: "Ocorreu um erro ao processar sua mensagem. Tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -26,49 +106,82 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="text-2xl text-gray-800">Envie uma Mensagem</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-gray-700">
-                    Nome Completo
-                  </label>
-                  <Input id="name" placeholder="Seu nome completo" />
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                    E-mail
-                  </label>
-                  <Input id="email" type="email" placeholder="seu@email.com" />
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                    Telefone (opcional)
-                  </label>
-                  <Input id="phone" placeholder="+244 123 456 789" />
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-medium text-gray-700">
-                    Assunto
-                  </label>
-                  <Input id="subject" placeholder="Como podemos ajudar?" />
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-gray-700">
-                    Mensagem
-                  </label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="Descreva sua dúvida ou sugestão..."
-                    rows={5}
-                  />
-                </div>
-                
-                <Button className="w-full gradient-bg text-white hover:opacity-90">
-                  Enviar Mensagem
-                </Button>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium text-gray-700">
+                      Nome Completo *
+                    </label>
+                    <Input 
+                      id="name" 
+                      placeholder="Seu nome completo" 
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium text-gray-700">
+                      E-mail *
+                    </label>
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="seu@email.com" 
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-sm font-medium text-gray-700">
+                      Telefone (opcional)
+                    </label>
+                    <Input 
+                      id="phone" 
+                      placeholder="+244 123 456 789" 
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="text-sm font-medium text-gray-700">
+                      Assunto *
+                    </label>
+                    <Input 
+                      id="subject" 
+                      placeholder="Como podemos ajudar?" 
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium text-gray-700">
+                      Mensagem *
+                    </label>
+                    <Textarea 
+                      id="message" 
+                      placeholder="Descreva sua dúvida ou sugestão..."
+                      rows={5}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  
+                  <Button 
+                    type="submit" 
+                    className="w-full gradient-bg text-white hover:opacity-90"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Enviando...' : 'Enviar via WhatsApp'}
+                  </Button>
+                </form>
               </CardContent>
             </Card>
 
