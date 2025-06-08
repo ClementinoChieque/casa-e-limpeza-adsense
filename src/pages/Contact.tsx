@@ -131,28 +131,6 @@ const Contact = () => {
                   </div>
                 </CardContent>
               </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-xl text-gray-800">Dúvidas Frequentes</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="text-sm">
-                    <p className="font-medium text-gray-800 mb-1">Qual o prazo de entrega?</p>
-                    <p className="text-gray-600">De 3 a 7 dias úteis para toda Angola.</p>
-                  </div>
-                  
-                  <div className="text-sm">
-                    <p className="font-medium text-gray-800 mb-1">Posso trocar um produto?</p>
-                    <p className="text-gray-600">Sim, em até 7 dias após o recebimento.</p>
-                  </div>
-                  
-                  <div className="text-sm">
-                    <p className="font-medium text-gray-800 mb-1">Como acompanhar meu pedido?</p>
-                    <p className="text-gray-600">Você receberá informações via WhatsApp.</p>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </div>

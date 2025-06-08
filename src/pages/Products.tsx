@@ -14,10 +14,6 @@ const Products = () => {
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
               Nossos Produtos
             </h1>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Explore nossa coleção completa de produtos de limpeza de alta qualidade. 
-              Temos tudo o que você precisa para manter sua casa sempre limpa e organizada.
-            </p>
           </div>
         </div>
         <ProductGrid />

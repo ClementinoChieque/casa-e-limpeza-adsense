@@ -33,9 +33,6 @@ const Header = () => {
           <Link to="/products" className="text-gray-700 hover:text-primary transition-colors">
             Produtos
           </Link>
-          <Link to="/about" className="text-gray-700 hover:text-primary transition-colors">
-            Sobre
-          </Link>
           <Link to="/contact" className="text-gray-700 hover:text-primary transition-colors">
             Contato
           </Link>
@@ -94,13 +91,6 @@ const Header = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Produtos
-            </Link>
-            <Link 
-              to="/about" 
-              className="block text-gray-700 hover:text-primary transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Sobre
             </Link>
             <Link 
               to="/contact" 
