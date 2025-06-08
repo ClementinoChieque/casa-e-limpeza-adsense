@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 import { supabase } from '@/integrations/supabase/client';
@@ -108,23 +107,6 @@ const ProductGrid = () => {
   return (
     <section className="py-8 px-4 bg-white">
       <div className="container mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Nossos Produtos
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Descubra nossa seleção de produtos de limpeza de alta qualidade, 
-            pensados para tornar sua casa sempre limpa e aconchegante.
-          </p>
-        </div>
-        
-        {/* AdSense Banner - Topo da seção de produtos */}
-        <div className="mb-8 text-center">
-          <div className="bg-gray-100 p-4 rounded-lg border-2 border-dashed border-gray-300">
-            <p className="text-gray-500 text-sm">Espaço para Google AdSense - Banner 728x90</p>
-          </div>
-        </div>
-        
         {loading ? (
           <div className="text-center py-8">
             <div className="text-lg">Carregando produtos...</div>
@@ -144,13 +126,6 @@ const ProductGrid = () => {
             )}
           </div>
         )}
-        
-        {/* AdSense Banner - Final da seção de produtos */}
-        <div className="mt-12 text-center">
-          <div className="bg-gray-100 p-4 rounded-lg border-2 border-dashed border-gray-300">
-            <p className="text-gray-500 text-sm">Espaço para Google AdSense - Banner 728x90</p>
-          </div>
-        </div>
       </div>
     </section>
   );

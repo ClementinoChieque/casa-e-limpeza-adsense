@@ -9,20 +9,7 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <Header />
       
-      {/* Hero Section Simplificado com espaçamento reduzido */}
-      <section className="clean-gradient py-8 px-4">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-6 animate-fade-in">
-            Produtos de Limpeza
-            <span className="text-primary block">Para Sua Casa</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-4 max-w-2xl mx-auto animate-fade-in">
-            Encontre vassouras, esfregonas e todos os produtos essenciais para manter sua casa sempre limpa e organizada.
-          </p>
-        </div>
-      </section>
-      
-      {/* Produtos com espaçamento reduzido */}
+      {/* Produtos direto após o header */}
       <div className="bg-white">
         <ProductGrid />
       </div>
